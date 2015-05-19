@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.wpsverlinden.latencyprofiler;
+package de.wpsverlinden.jatp;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
