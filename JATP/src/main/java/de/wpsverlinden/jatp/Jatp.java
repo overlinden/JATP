@@ -82,4 +82,11 @@ public class Jatp {
         }
         return (float) (sum / m.length);
     }
+
+    public void probe() {
+        if (isStarted) {
+            endMeasure();
+        }
+        startMeasure();
+    }
 }

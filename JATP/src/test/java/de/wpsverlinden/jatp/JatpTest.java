@@ -45,6 +45,16 @@ public class JatpTest {
         profiler.startMeasure();
         profiler.startMeasure();
     }
+    
+    @Test
+    public void probePicksANewTimestamp() {
+        Jatp profiler = new Jatp(2);
+        profiler.probe();
+        profiler.probe();
+        profiler.probe();
+        Stats stats = profiler.getStats();
+        assertEquals(2, stats.getNumOfProbes());
+    }
 
     @Test
     public void getNumOfProbesReturnsCorrectValue() {
