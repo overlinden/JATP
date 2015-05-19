@@ -47,8 +47,6 @@
                                 <rule implementation="org.jacoco.maven.RuleConfiguration">
                                     <element>CLASS</element>
                                     <excludes>
-                                        <exclude>*OutputPrinter</exclude>
-                                        <exclude>*DupFind</exclude>
                                     </excludes>
                                     <limits>
                                         <limit implementation="org.jacoco.report.check.Limit">
