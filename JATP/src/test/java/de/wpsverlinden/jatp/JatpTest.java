@@ -33,13 +33,13 @@ public class JatpTest {
         profiler.endMeasure();
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = IllegalStateException.class)
     public void endMeasureThrowsExceptionOnNotRunningMeasurement() {
         Jatp profiler = new Jatp(0);
         profiler.endMeasure();
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = IllegalStateException.class)
     public void startMeasureThrowsExceptionOnRunningMeasurement() {
         Jatp profiler = new Jatp(2);
         profiler.startMeasure();

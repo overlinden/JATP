@@ -33,7 +33,7 @@ public class Jatp {
 
     public void startMeasure() {
         if (isStarted) {
-            throw new RuntimeException("Measurement already started");
+            throw new IllegalStateException("Measurement already started");
         }
         isStarted = true;
         time = System.nanoTime();
@@ -41,7 +41,7 @@ public class Jatp {
 
     public void endMeasure() {
         if (!isStarted) {
-            throw new RuntimeException("Measurement not started");
+            throw new IllegalStateException("Measurement not started");
         }
         if (index >= times.length) {
             throw new RuntimeException("Profiler capacity exceeded");
