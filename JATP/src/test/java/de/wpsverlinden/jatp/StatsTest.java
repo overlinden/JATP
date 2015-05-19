@@ -25,21 +25,67 @@ import static org.junit.Assert.*;
 public class StatsTest {
     
     @Test
-    public void contructorAndGetterWorkingProperly() {
-        Stats s = new Stats(1, 2, 3, 4, 5, 6, 7, 8, 9);
+    public void getNumOfProbesShouldReturnCorrectValueGivenByConstructor() {
+        Stats s = new Stats(1, 0, 0, 0, 0, 0, 0, 0, 0);
         assertEquals(1, s.getNumOfProbes());
-        assertEquals(2, s.getUsFor50Percentile(), 0);
-        assertEquals(3, s.getUsFor90Percentile(), 0);
-        assertEquals(4, s.getUsFor99Percentile(), 0);
-        assertEquals(5, s.getUsFor999Percentile(), 0);
-        assertEquals(6, s.getUsFor9999Percentile(), 0);
-        assertEquals(7, s.getUsForBestRun(), 0);
-        assertEquals(8, s.getUsForAvgRun(), 0);
-        assertEquals(9, s.getUsForWorstRun(), 0);
     }
     
     @Test
-    public void printsRelevantInformation() {
+    public void getUsFor50PercentileShouldReturnCorrectValueGivenByConstructor() {
+        Stats s = new Stats(0, 1, 0, 0, 0, 0, 0, 0, 0);
+        assertEquals(1, s.getUsFor50Percentile(), 0);
+    }
+    
+    @Test
+    public void getUsFor90PercentileShouldReturnCorrectValueGivenByConstructor() {
+        Stats s = new Stats(0, 0, 1, 0, 0, 0, 0, 0, 0);
+        assertEquals(1, s.getUsFor90Percentile(), 0);
+    }
+    
+        
+    @Test
+    public void getUsFor99PercentileShouldReturnCorrectValueGivenByConstructor() {
+        Stats s = new Stats(0, 0, 0, 1, 0, 0, 0, 0, 0);
+        assertEquals(1, s.getUsFor99Percentile(), 0);
+    }
+    
+        
+    @Test
+    public void getUsFor999PercentileShouldReturnCorrectValueGivenByConstructor() {
+        Stats s = new Stats(0, 0, 0, 0, 1, 0, 0, 0, 0);
+        assertEquals(1, s.getUsFor999Percentile(), 0);
+    }
+    
+        
+    @Test
+    public void getUsFor9999PercentileShouldReturnCorrectValueGivenByConstructor() {
+        Stats s = new Stats(0, 0, 0, 0, 0, 1, 0, 0, 0);
+        assertEquals(1, s.getUsFor9999Percentile(), 0);
+    }
+    
+        
+    @Test
+    public void getUsForBestRunShouldReturnCorrectValueGivenByConstructor() {
+        Stats s = new Stats(0, 0, 0, 0, 0, 0, 1, 0, 0);
+        assertEquals(1, s.getUsForBestRun(), 0);
+    }
+    
+        
+    @Test
+    public void getUsForAvgRunShouldReturnCorrectValueGivenByConstructor() {
+        Stats s = new Stats(0, 0, 0, 0, 0, 0, 0, 1, 0);
+        assertEquals(1, s.getUsForAvgRun(), 0);
+    }
+    
+        
+    @Test
+    public void getUsForWorstRunShouldReturnCorrectValueGivenByConstructor() {
+        Stats s = new Stats(0, 0, 0, 0, 0, 0, 0, 0, 1);
+        assertEquals(1, s.getUsForWorstRun(), 0);
+    }
+    
+    @Test
+    public void printReturnsRelevantInformation() {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         Stats s = new Stats(1, 2, 3, 4, 5, 6, 7, 8, 9);
         s.print(new PrintStream(output));
