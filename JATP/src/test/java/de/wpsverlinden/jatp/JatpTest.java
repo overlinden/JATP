@@ -21,67 +21,93 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class JatpTest {
-    
+
     @Test(expected = RuntimeException.class)
     public void endMeasureThrowsExceptionOnCapacityExceeded() {
         Jatp profiler = new Jatp(1);
-        
+
         profiler.startMeasure();
         profiler.endMeasure();
-        
+
         profiler.startMeasure();
         profiler.endMeasure();
     }
-    
+
     @Test(expected = RuntimeException.class)
-    public void endNotRunningMeasurementCausesException() {
+    public void endMeasureThrowsExceptionOnNotRunningMeasurement() {
         Jatp profiler = new Jatp(0);
         profiler.endMeasure();
     }
-    
+
     @Test(expected = RuntimeException.class)
-    public void startRunningMeasurementCausesException() {
+    public void startMeasureThrowsExceptionOnRunningMeasurement() {
         Jatp profiler = new Jatp(2);
         profiler.startMeasure();
         profiler.startMeasure();
     }
-    
+
     @Test
-    public void numberOfProbesIsCorrect() {
+    public void getNumOfProbesReturnsCorrectValue() {
         Jatp profiler = new Jatp(10);
-        
+
         profiler.startMeasure();
         profiler.endMeasure();
-        
+
         profiler.startMeasure();
         profiler.endMeasure();
-        
+
         profiler.startMeasure();
         profiler.endMeasure();
-        
+
         Stats stats = profiler.getStats();
         assertEquals(3, stats.getNumOfProbes());
     }
-    
+
     @Test
-    public void maxGreaterAvgGreaterMin() throws InterruptedException {
-        Jatp profiler = new Jatp(10);
-        
+    public void getUsForBestRunReturnsCorrectValue() throws InterruptedException {
+        Jatp profiler = new Jatp(2);
+
         profiler.startMeasure();
         Thread.sleep(100);
         profiler.endMeasure();
-        
+
         profiler.startMeasure();
         Thread.sleep(200);
         profiler.endMeasure();
-        
-        profiler.startMeasure();
-        Thread.sleep(300);
-        profiler.endMeasure();
-        
+
         Stats stats = profiler.getStats();
         assertTrue(stats.getUsForBestRun() > 90000 && stats.getUsForBestRun() < 110000);
-        assertTrue(stats.getUsForAvgRun() > 190000 && stats.getUsForAvgRun() < 210000);
-        assertTrue(stats.getUsForWorstRun() > 290000 && stats.getUsForBestRun() < 310000);
+    }
+
+    @Test
+    public void getUsForAvgRunReturnsCorrectValue() throws InterruptedException {
+        Jatp profiler = new Jatp(2);
+
+        profiler.startMeasure();
+        Thread.sleep(100);
+        profiler.endMeasure();
+
+        profiler.startMeasure();
+        Thread.sleep(200);
+        profiler.endMeasure();
+
+        Stats stats = profiler.getStats();
+        assertTrue(stats.getUsForAvgRun() > 140000 && stats.getUsForAvgRun() < 160000);
+    }
+
+    @Test
+    public void getUsForWorstRunReturnsCorrectValue() throws InterruptedException {
+        Jatp profiler = new Jatp(2);
+
+        profiler.startMeasure();
+        Thread.sleep(100);
+        profiler.endMeasure();
+
+        profiler.startMeasure();
+        Thread.sleep(200);
+        profiler.endMeasure();
+
+        Stats stats = profiler.getStats();
+        assertTrue(stats.getUsForWorstRun() > 190000 && stats.getUsForBestRun() < 210000);
     }
 }

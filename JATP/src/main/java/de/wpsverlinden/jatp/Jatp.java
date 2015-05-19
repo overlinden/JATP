@@ -54,7 +54,7 @@ public class Jatp {
 
     public Stats getStats() {
         int filled = 0;
-        while (times[filled] != -1) {
+        while (filled < times.length && times[filled] != -1) {
             filled++;
         }
 
